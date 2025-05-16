@@ -3,6 +3,7 @@ name: Keep Repo Active
 on:
   schedule:
     - cron: '0 2 1 * *'
+  workflow_dispatch: # 添加此行以支持手动触发
 
 jobs:
   keep_alive:
