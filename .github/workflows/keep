@@ -1,0 +1,27 @@
+name: Keep Repo Active
+
+on:
+  schedule:
+    - cron: '0 2 1 * *'
+
+jobs:
+  keep_alive:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4 # 或者使用最新的 @v3, @v4 等
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Create empty commit and push
+        run: |
+          echo "Creating empty commit to keep repository active"
+          git commit --allow-empty -m "chore: Keep repository active [skip ci]"
+          echo "Pushing to repository"
+          git push
+        
