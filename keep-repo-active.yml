@@ -20,6 +20,8 @@ jobs:
 
       - name: Create empty commit and push
         run: |
+          echo "Creating empty commit to keep repository active"
           git commit --allow-empty -m "chore: Keep repository active [skip ci]"
+          echo "Pushing to repository"
           git push
         
